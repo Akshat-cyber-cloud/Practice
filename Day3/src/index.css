@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+.boxes{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 30px;
+}
+
+.box{
+  padding: 20px;
+  font-size: 5vh;
+}
+
+button{
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  margin: 5px;
+  background-color: aqua;
+}
