@@ -1,0 +1,10 @@
+1. first design and complete your application.
+2. create docker file
+3. build image
+4. docker login
+5. tag image for docker hub.
+6. push image to docker hub.
+7. create pod and Kubernetes pull the image from the docker hub.
+8. expose
+9. create service object
+10. link service with minikube.

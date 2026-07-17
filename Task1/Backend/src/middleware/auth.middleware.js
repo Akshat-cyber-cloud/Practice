@@ -8,16 +8,16 @@ export const protect = async (req,res,next) => {
         if(!token){
             return res.status(401).json({
                 message: "Unauthorized"
-            });
+            })
         }
 
-        const decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+        const decoded = jsonwebtoken.verify(token,process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id).select("-password");
         next();
     }catch(error){
         console.log(error);
         res.status(500).json({
-            message: "Internal server error"
+            message: "Internal Server error"
         });
     }
 }

@@ -1,4 +1,3 @@
-// src/components/Dashboard.jsx
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
