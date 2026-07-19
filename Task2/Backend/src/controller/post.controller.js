@@ -1,4 +1,4 @@
-import Post from "../model/post.model";
+import Post from "../model/post.model.js";
 
 const createPost = async (req,res) => {
     try{
@@ -10,7 +10,7 @@ const createPost = async (req,res) => {
             });
         }
 
-        const post = Post.create({
+        const post = await Post.create({
             title,
             content,
             author: req.user._id
