@@ -64,4 +64,67 @@ const getPostById = async (req,res) => {
     }
 }
 
+const updatePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({
+                message: "Post Not Found"
+            });
+        }
+        if (post.author.toString() !== req.user._id.toString()) {
+            return res.status(403).json({
+                message: "Not authorized, you are not the owner"
+            });
+        }
+        const { title, content } = req.body;
+        post.title = title || post.title;
+        post.content = content || post.content;
+        await post.save();
+        return res.status(200).json({
+            message: "Post Updated Successfully",
+            post
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+};
 
+const deletePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({
+                message: "Post Not Found"
+            });
+        }
+        if (post.author.toString() !== req.user._id.toString()) {
+            return res.status(403).json({
+                message: "Not authorized, you are not the owner"
+            });
+        }
+        await post.deleteOne();
+        return res.status(200).json({
+            message: "Post Deleted Successfully"
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+};
+
+
+const postController = {
+    createPost,
+    getAllPosts,
+    getPostById,
+    updatePost,
+    deletePost
+};
+
+export default postController;
