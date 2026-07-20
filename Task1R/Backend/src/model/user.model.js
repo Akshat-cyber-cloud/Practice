@@ -3,21 +3,22 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, "Enter the username"],
-        unique: true
+        required: [true, "Name is must"],
     },
+
     email: {
         type: String,
-        required: [true, "Email is must"],
-        unique: true
+        required: true,
+        unique: true,
     },
+
     password: {
         type: String,
-        required: [true, "Password must be 6 chars long"],
+        required: true,
         minLength: 6,
-        maxLength: 128
+        maxLength: 12
     }
-}, { timestamps: true });
+}, {timestamps: true});
 
 const User = mongoose.model("User", UserSchema);
 
