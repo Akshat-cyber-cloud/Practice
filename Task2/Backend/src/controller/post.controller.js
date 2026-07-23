@@ -6,7 +6,7 @@ const createPost = async (req,res) => {
 
         if(!title || !content){
             return res.status(400).json({
-                message: "Title and Content are required"
+                message: "Title and Content are not available"
             });
         }
 
@@ -55,7 +55,6 @@ const getPostById = async (req,res) => {
         return res.status(200).json({
             post
         });
-
     }catch(error){
         console.log(error);
         return res.status(500).json({
@@ -72,14 +71,17 @@ const updatePost = async (req, res) => {
                 message: "Post Not Found"
             });
         }
+    
         if (post.author.toString() !== req.user._id.toString()) {
             return res.status(403).json({
                 message: "Not authorized, you are not the owner"
             });
         }
+
         const { title, content } = req.body;
         post.title = title || post.title;
         post.content = content || post.content;
+
         await post.save();
         return res.status(200).json({
             message: "Post Updated Successfully",
@@ -117,7 +119,6 @@ const deletePost = async (req, res) => {
         });
     }
 };
-
 
 const postController = {
     createPost,
