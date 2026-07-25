@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Schema for creating a new post
 export const createPostSchema = z.object({
     title: z
         .string({ required_error: "Title is required" })
@@ -14,7 +13,6 @@ export const createPostSchema = z.object({
         .trim(),
 });
 
-// Schema for updating a post (all fields optional)
 export const updatePostSchema = z.object({
     title: z
         .string()
