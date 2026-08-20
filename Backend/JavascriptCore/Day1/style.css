@@ -1,46 +1,66 @@
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin:0;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
   background-color: antiquewhite;
 }
 
-body.dark-mode{
-  background-color: #1e1e2e;
-  color: #ffffff;
+html.dark-mode,
+html.dark-mode body {
+  background-color: #121212;
+  color: #fff;
 }
 
-body.dark-mode .box {
-  background-color: #2b2b3d;
-  color: #ffffff;
-  border-color: #444466;
+html.dark-mode .box{
+  background-color: #574040;
+  color: #fff;
+}
+
+.heading{
+  text-align: center;
+  margin-top: 30px;
+}
+
+#main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 
-.container{
+#main .container{
   text-align: center;
 }
 
 button{
   padding: 10px 20px;
+  border: none;
+  margin: 10px;
   font-size: 16px;
   cursor: pointer;
-  margin-bottom: 20px;
-  border: none;
-  background-color: aqua;
-  border-radius: 5px;
-  color: black;
+  border-radius: 10px;
+  background-color: #0000006c;
+  color: #fff;
 }
 
 .box{
-  padding: 20px 40px;
-  background-color: #ffffff;
-  border: 2px solid #333;
-  border-radius: 10px;
-  color: #100e0e;
+  height: 100px;
+  width: 400px;
+  background-color: #574040;
+  margin-top: 20px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .box.hidden{
