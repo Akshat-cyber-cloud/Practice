@@ -30,6 +30,38 @@ const generateAccessAndRefreshToken = async (userId) => {
     }
 }
 
+// POST /api/auth/refresh
+export const refreshAccessToken = async (req, res) => {
+    try {
+
+        const incomingRefreshToken = req.cookies.refreshToken;
+
+        if (!incomingRefreshToken) {
+            return res.status(401).json({ message: "No refresh token" });
+        }
+
+        const decoded = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN);
+
+        const user = await User.findById(decoded.id);
+
+        if (!user || user.refreshToken !== incomingRefreshToken) {
+            return res.status(401).json({ message: "Invalid refresh token" });
+        }
+
+        const accessToken = jwt.sign(
+            { id: user._id },
+            process.env.ACCESS_TOKEN,
+            { expiresIn: "20m" }
+        );
+
+        return res.status(200).json({ accessToken });
+
+    } catch (error) {
+        return res.status(401).json({ message: "Refresh token expired, login again" });
+    }
+};
+
+
 export const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
