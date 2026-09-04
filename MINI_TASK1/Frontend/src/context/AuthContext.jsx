@@ -15,7 +15,7 @@ export const AuthProvider = ({children}) => {
             localStorage.setItem("accessToken", res.data.accessToken);
             setUser(res.data.user);
         }catch(error){
-            console.error("Registration failed:", error.response ? error.response.data : error.message);
+            throw error;
         }
     }
 
@@ -25,7 +25,7 @@ export const AuthProvider = ({children}) => {
             localStorage.setItem("accessToken", res.data.accessToken);
             setUser(res.data.user);
         } catch (error) {
-            console.error("Login failed:", error.response ? error.response.data : error.message);
+            throw error;
         }
     };
 
